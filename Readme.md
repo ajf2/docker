@@ -16,3 +16,15 @@ $ docker-machine ip
 
 ### Don't use Edge
 Similarly to the above, the Microsoft Edge browser fails to connect even when using the Docker Machine's IP address. Vivaldi works fine, so any Chromium-based browser should also be fine.
+
+### Multiple network interfaces
+The command `docker swarm init` may return an error message such as:
+```
+$ docker swarm init
+Error response from daemon: could not choose an IP address to advertise since this system has multiple addresses on different interfaces (10.0.2.15 on eth0 and 192.168.99.100 on eth1) - specify one with --advertise-addr
+```
+
+In this case, find the default Docker Machine IP address with `docker-machine ip default` and use this or its interface name in the swarm init command:
+```
+$ docker swarm init --advertise-addr eth1
+```
