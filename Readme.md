@@ -24,7 +24,8 @@ $ docker swarm init
 Error response from daemon: could not choose an IP address to advertise since this system has multiple addresses on different interfaces (10.0.2.15 on eth0 and 192.168.99.100 on eth1) - specify one with --advertise-addr
 ```
 
-In this case, find the default Docker Machine IP address with `docker-machine ip default` and use this or its interface name in the swarm init command:
+In this case, find the default Docker Machine IP address with `docker-machine ip` and use this or its interface name in the swarm init command:
 ```
 $ docker swarm init --advertise-addr eth1
 ```
+Note that the IP address should match the "default" machine shown when running `docker-machine ls`.
